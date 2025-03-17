@@ -96,19 +96,18 @@ export function AuthProvider({ children }: Props) {
         // const res = await axios.get(endpoints.auth.me);
 
         // const { user } = res.data;
-        const tmpUser: string | null = sessionStorage.getItem(USER_KEY);
-        if (tmpUser) {
-          const user = JSON.parse(tmpUser);
-          dispatch({
-            type: Types.INITIAL,
-            payload: {
-              user: {
-                ...user,
-                accessToken,
-              },
+        // const tmpUser: string | null = sessionStorage.getItem(USER_KEY);
+        // if (tmpUser) {
+        // const user = JSON.parse(tmpUser);
+        dispatch({
+          type: Types.INITIAL,
+          payload: {
+            user: {
+              // ...user,
+              accessToken,
             },
-          });
-        }
+          },
+        });
       } else {
         dispatch({
           type: Types.INITIAL,
@@ -144,7 +143,7 @@ export function AuthProvider({ children }: Props) {
       serviceUrl: getBaseUrl(BaseUrlTypes.ENUM_HOST_BASE_URI) + endpoints.auth.login,
     });
 
-    const { accessToken } = res.data;
+    const accessToken = res.data.token;
 
     setSession(accessToken);
 
@@ -153,6 +152,19 @@ export function AuthProvider({ children }: Props) {
       payload: {
         user: {
           // ...user,
+          accessToken,
+        },
+      },
+    });
+  }, []);
+
+  const setLogin = useCallback(async (user: any, accessToken: string) => {
+    setSession(accessToken);
+    dispatch({
+      type: Types.LOGIN,
+      payload: {
+        user: {
+          ...user,
           accessToken,
         },
       },
@@ -212,8 +224,9 @@ export function AuthProvider({ children }: Props) {
       login,
       register,
       logout,
+      setLogin,
     }),
-    [login, logout, register, state.user, status]
+    [login, logout, register, setLogin, state.user, status]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

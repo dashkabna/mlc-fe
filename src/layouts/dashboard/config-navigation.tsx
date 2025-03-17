@@ -51,29 +51,25 @@ export function useNavData() {
       {
         subheader: 'overview v5.7.0',
         items: [
-          { title: 'one', path: paths.dashboard.root, icon: ICONS.dashboard },
-          { title: 'two', path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: 'Users', path: paths.dashboard.user.root, icon: ICONS.menuItem },
+          { title: 'Employees', path: paths.dashboard.employee.root, icon: ICONS.menuItem },
           {
-            title: 'three',
-            path: paths.dashboard.three,
-            icon: ICONS.analytics,
+            title: 'Tasks',
+            path: paths.dashboard.task.root,
+            icon: ICONS.menuItem,
           },
         ],
       },
-
-      // MANAGEMENT
-      // ----------------------------------------------------------------------
       {
         subheader: 'management',
         items: [
           {
-            title: 'user',
-            path: paths.dashboard.group.root,
-            icon: ICONS.user,
+            title: 'Order',
+            path: paths.dashboard.group.order.root,
+            icon: ICONS.order,
             children: [
-              { title: 'four', path: paths.dashboard.group.root },
-              { title: 'five', path: paths.dashboard.group.five },
-              { title: 'six', path: paths.dashboard.group.six },
+              { title: 'Orders', path: paths.dashboard.group.order.root },
+              { title: 'Products', path: paths.dashboard.group.product.root },
             ],
           },
         ],

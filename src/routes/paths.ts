@@ -19,13 +19,32 @@ export const paths = {
   // DASHBOARD
   dashboard: {
     root: ROOTS.DASHBOARD,
-    one: `${ROOTS.DASHBOARD}/one`,
-    two: `${ROOTS.DASHBOARD}/two`,
-    three: `${ROOTS.DASHBOARD}/three`,
+    user: {
+      root: `${ROOTS.DASHBOARD}/user`,
+      new: `${ROOTS.DASHBOARD}/user/new`,
+      edit: (id: string) => `${ROOTS.DASHBOARD}/user/${id}/edit`,
+    },
+    employee: {
+      root: `${ROOTS.DASHBOARD}/employee`,
+      new: `${ROOTS.DASHBOARD}/employee/new`,
+      edit: (id: string) => `${ROOTS.DASHBOARD}/employee/${id}/edit`,
+    },
+    task: {
+      root: `${ROOTS.DASHBOARD}/task`,
+      new: `${ROOTS.DASHBOARD}/task/new`,
+      edit: (id: string) => `${ROOTS.DASHBOARD}/task/${id}/edit`,
+    },
     group: {
-      root: `${ROOTS.DASHBOARD}/group`,
-      five: `${ROOTS.DASHBOARD}/group/five`,
-      six: `${ROOTS.DASHBOARD}/group/six`,
+      order: {
+        root: `${ROOTS.DASHBOARD}/group/order`,
+        new: `${ROOTS.DASHBOARD}/group/order/new`,
+        edit: (id: string) => `${ROOTS.DASHBOARD}/group/order/${id}/edit`,
+      },
+      product: {
+        root: `${ROOTS.DASHBOARD}/group/product`,
+        new: `${ROOTS.DASHBOARD}/group/product/new`,
+        edit: (id: string) => `${ROOTS.DASHBOARD}/group/product/${id}/edit`,
+      },
     },
   },
 };

@@ -42,7 +42,7 @@ export default function JwtRegisterView() {
 
   const RegisterSchema = Yup.object().shape({
     fullName: Yup.string().required('Нэр'),
-    email: Yup.string().required('Заавал бөглөх талбар!').email('Мэйл хаяг бичнэ үү!'),
+    email: Yup.string().required('Заавал бөглөх талбар!'),
     password: Yup.string().required('Заавал бөглөх талбар!'),
   });
 

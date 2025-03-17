@@ -5,7 +5,6 @@ export async function POST(req: NextRequest) {
   try {
     const dataAll = await req.json();
     const url = dataAll.serviceUrl;
-    const { Authorization } = dataAll;
 
     if (!url) {
       throw new Error('URL is not defined in the request body');
@@ -14,10 +13,10 @@ export async function POST(req: NextRequest) {
     delete dataAll.Authorization;
     delete dataAll.headers;
     const response = await axios.post(url, dataAll, {
-    //   headers: {
-    //     Authorization,
-    //     'Content-Type': 'application/json',
-    //   },
+      headers: {
+        "Authorization": req.headers.get('Authorization'),
+        'Content-Type': 'application/json',
+      },
     });
 
     return NextResponse.json(response.data);
@@ -37,13 +36,10 @@ export async function GET(req: NextRequest) {
     }
 
     const response = await axios.get(url, {
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   username: req.headers.get('username') || 'Unknown User',
-      //   ipAddress:
-      //     req.headers.get('x-forwarded-for')?.split(',')[0].replace('::ffff:', '') || req.ip,
-      //   permission: JSON.stringify(req.headers.get('permission') || {}),
-      // },
+      headers: {
+        "Authorization": req.headers.get('Authorization'),
+        'Content-Type': 'application/json',
+      },
     });
     return NextResponse.json(response.data);
   } catch (e: any) {
